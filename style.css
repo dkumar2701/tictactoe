@@ -68,3 +68,16 @@ and would likely have wasted time manually moving the divs*/
     border: 2px solid black;
     background-color: hsl(207, 80%, 58%);
 }
+.restart {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .restart:hover {
+    background-color: #0062cc;
+  }

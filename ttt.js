@@ -30,7 +30,8 @@ window.onload = function (e){
                   ["", "", ""]],
         "playerNumber" : 1,
         "winner": null,
-        "full": false
+        "full": false,
+        "player1": null,
     }
     
 
@@ -53,8 +54,8 @@ window.onload = function (e){
         let val = snapshot.val()
         console.log("player:", val)
     })
-    
-    
+    test = null
+    console.log()
     
     
     new Vue({
@@ -66,7 +67,6 @@ window.onload = function (e){
 
                 <div class="turn" >
                     <div>Player {{this.boardState.player}}'s Turn</div>
-                    <div>You are {{this.playerType}}</div>
                 </div>
                 <div class="board">
                     <div v-for="(row, rowIndex) in boardState.board" :key="rowIndex" class="row">
@@ -81,9 +81,10 @@ window.onload = function (e){
                         </div>
                     </div>
                 </div>
-                <div class="winner" v-if="boardState.winner">
+                <div class="winner" v-if="winning">
                     The Winner Is {{boardState.winner}}
                 </div>
+                <button class="restart" v-if="winning" @click="restart()">RESTART GAME</button>
             </div>
             
             
@@ -97,7 +98,7 @@ window.onload = function (e){
 
         methods: {
             handleClick(row, col){
-                if (!this.boardState.winner && this.boardState.board[row][col] === "" && this.playerType==this.boardState.player) {
+                if (!this.boardState.winner && this.boardState.board[row][col] === "") {
                     //I wasn't able to get the board to change so I asked gpt how to put the correct
                     //player's value here and update what the board looked like
                     this.$set(this.boardState.board[row], col, this.boardState.player);
@@ -148,25 +149,15 @@ window.onload = function (e){
                 
               },
             
-            created() {
-                // Prompt the user to choose a player type (X or O)
-                playerNumberRef.once('value', (snapshot)=>{
-                    let Number = snapshot.val()
-                    if(Number == 1){
-                        console.log("WE HAVE 1")
-                        this.playerType = "X"
-                        this.boardState.playerNumber = 2
-                    } else if (Number == 2){
-                        console.log("WE HAVE 2")
-                        this.playerType = "O"
-                        this.Number= 3
-                    } else{
-                        console.log("NO MORE PLAYERS ALLOWED")
-                    }
-                    boardRef.set(this.boardState)
-                })
-                
-              },
+            restart(){
+              
+              this.boardState.board =[["", "", ""],
+                  ["", "", ""],
+                  ["", "", ""]]
+              this.boardState.player = "X"
+              this.boardState.winner = null
+              boardRef.set(this.boardState)
+            }
         },
         
 
@@ -179,11 +170,14 @@ window.onload = function (e){
         },
 
         computed: {
-            
+            winning(){
+              return this.boardState.winner == "X" || this.boardState.winner == "O" ||this.boardState.winner == "Nobody 😫"
+                
+            }
         },
 
         mounted(){
-            this.created()
+            
             boardRef.on("value", (snapshot)=>{
                 let board = snapshot.val()
                 this.boardState = board
