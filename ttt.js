@@ -29,7 +29,7 @@ window.onload = function (e){
                   ["", "", ""],
                   ["", "", ""]],
         "playerNumber" : 1,
-        "winner": null,
+        "winner": "X",
         "full": false
     }
     
@@ -54,7 +54,9 @@ window.onload = function (e){
         console.log("player:", val)
     })
     
-
+    
+    
+    
     new Vue({
         el: '#ttt',
     
@@ -66,7 +68,6 @@ window.onload = function (e){
                     <div>Player {{this.boardState.player}}'s Turn</div>
                     <div>You are {{this.playerType}}</div>
                 </div>
-                <div>{{boardState.board}}</div>
                 <div class="board">
                     <div v-for="(row, rowIndex) in boardState.board" :key="rowIndex" class="row">
                         <div
@@ -79,6 +80,9 @@ window.onload = function (e){
                         
                         </div>
                     </div>
+                </div>
+                <div class="winner" v-if="boardState.winner">
+                    The Winner Is {{boardState.winner}}
                 </div>
             </div>
             
@@ -139,7 +143,7 @@ window.onload = function (e){
               
                 // If there are no winners, return null
                 if (this.boardState.full){
-                    return this.boardState.winner = "None";
+                    return this.boardState.winner = "Nobody 😫";
                 }
                 
               },
