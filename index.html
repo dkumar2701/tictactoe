@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- 
+      This is an HTML comment
+      You can write text in a comment and the content won't be visible in the page
+    -->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="Images/tictactoe.png" />
+
+    <!--
+      This is the page head - it contains info the browser uses
+      Like the title, which appears on the browser tab but not inside the page
+      Further down you'll see the content that displays in the page
+    -->
+    <title>Tic Tac Toe</title>
+
+    <!-- The website stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+    
+    <!-- Load Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+
+    <!-- The website JavaScript file -->
+    <script src="ttt.js"></script>
+  </head>
+  <body>
+    <div class="centering">
+      <div class="title">
+        <h1>
+          Tic-Tac-Toe with Friends!
+        </h1>
+      </div>
+      
+    </div>
+    <div class="tttWrap">
+      <div id="ttt">
+        TIC TAC TOE
+      </div>
+    </div>
+    
+  </body>
+</html>
