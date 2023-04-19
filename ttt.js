@@ -29,7 +29,7 @@ window.onload = function (e){
                   ["", "", ""],
                   ["", "", ""]],
         "playerNumber" : 1,
-        "winner": "X",
+        "winner": null,
         "full": false
     }
     
